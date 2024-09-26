@@ -1,13 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { ThemeProvider } from "@mui/material/styles";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import theme from "./theme";
+import { CssBaseline } from "@mui/material";
+import { setDefaultOptions } from "date-fns";
+import { ptBR } from "date-fns/locale";
+import AppContextProvider from "./AppContextProvider";
+
+setDefaultOptions({ locale: ptBR });
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppContextProvider>
+        <App />
+      </AppContextProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
 
